@@ -1,0 +1,13 @@
+.vscode
+*.code-workspace
+__pycache__
+*.log
+transcript
+tmp
+*.elf
+*.elf.dump
+whisperfuzz_programs/src/
+whisperfuzz_programs/build/
+**/build/
+venv
+*.svg

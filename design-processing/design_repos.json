@@ -1,0 +1,19 @@
+{
+    "vexriscv": "../../milesan-designs/milesan-vexriscv/milesan",
+    "kronos": "../../milesan-designs/milesan-kronos/milesan",
+    "picorv32": "../../milesan-designs/milesan-picorv32/milesan",
+    "rocket": "../../milesan-designs/milesan-chipyard/milesan-rocket",
+    "rocket-medium": "../../milesan-designs/milesan-chipyard-medium-configs/milesan-rocket",
+    "rocket-large": "../../milesan-designs/milesan-chipyard-large-configs/milesan-rocket",
+    "rocket-rvc": "../../milesan-designs/milesan-chipyard-rvc/milesan-rocket",
+    "boom": "../../milesan-designs/milesan-chipyard/milesan-boom",
+    "boom-medium": "../../milesan-designs/milesan-chipyard-medium-configs/milesan-boom",
+    "boom-large": "../../milesan-designs/milesan-chipyard-large-configs/milesan-boom",
+    "boom-rvc": "../../milesan-designs/milesan-chipyard-rvc/milesan-boom",
+    "secure-boom": "../../milesan-designs/chipyard/milesan-boom",
+    "pt-boom": "../../milesan-designs/phantomtrails-chipyard/milesan-boom",
+    "cva6": "../../milesan-designs/milesan-cva6/milesan",
+    "cva6-ctfix": "../../milesan-designs/milesan-cva6-ctfix/milesan",
+    "cva6-test": "../../milesan-designs/cva6-test/milesan",
+    "openc910":"../../milesan-designs/milesan-openc910/milesan"
+}
