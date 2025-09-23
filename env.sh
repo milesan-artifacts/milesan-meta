@@ -18,7 +18,7 @@ echo "milesan metarepo root: $myroot"
 export MILESAN_META_ROOT=$myroot
 
 PWD=$(pwd)
-if [[ "${PWD}" == *"tkovats"* ]];
+if [[ "${PWD}" != *"root"* ]];
 then
 echo "Running natively."
 export LOCAL_MNT=/scratch/tkovats/ssh_mnt
@@ -27,7 +27,7 @@ export VSIM=/usr/local/questa-2023-04/questasim/linux_x86_64/vsim
 source $LOCAL_MNT/cellift-meta/env.sh
 else
 echo "Running inside container."
-export LOCAL_MNT=/mnt
+export LOCAL_MNT?=/mnt
 export LM_LICENSE_FILE=8161@lic-mentor.ethz.ch
 export PATH_FROM_MODELSIM_TO_MNT=/scratch/tkovats/ssh_mnt
 source $LOCAL_MNT/cellift-meta/env.sh
