@@ -17,8 +17,8 @@ echo "milesan metarepo root: $myroot"
 # Set meta repo root
 export MILESAN_META_ROOT=$myroot
 
-PWD=$(pwd)
-if [[ "${PWD}" != *"root"* ]];
+USR=$(whoami)
+if [[ "${USR}" != *"root"* ]];
 then
 echo "Running natively."
 export LOCAL_MNT=/scratch/tkovats/ssh_mnt
