@@ -1,0 +1,15 @@
+[submodule "tools/riscv-isa-sim"]
+	path = tools/riscv-isa-sim
+	url = https://github.com/riscv-software-src/riscv-isa-sim.git
+[submodule "tools/verilator"]
+	path = tools/verilator
+	url = https://github.com/verilator/verilator
+[submodule "tools/sv2v"]
+	path = tools/sv2v
+	url = https://github.com/zachjs/sv2v.git
+[submodule "tools/riscv-gnu-toolchain"]
+	path = tools/riscv-gnu-toolchain
+	url = https://github.com/riscv/riscv-gnu-toolchain
+[submodule "tools/makeelf"]
+	path = tools/makeelf
+	url = https://github.com/flaviens/makeelf
