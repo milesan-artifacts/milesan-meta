@@ -25,7 +25,7 @@ import sys
 from collections import defaultdict
 
 if "MILESAN_ENV_SOURCED" not in os.environ:
-    raise Exception("The Cascade environment must be sourced prior to running the Python recipes.")
+    raise Exception("The MileSan environment must be sourced prior to running the Python recipes.")
 
 DESIGN_CFGS_BASENAME = "design_repos.json"
 PATH_TO_DESIGN_CFGS = os.path.join(os.getenv("MILESAN_DESIGN_PROCESSING_ROOT"), DESIGN_CFGS_BASENAME)
