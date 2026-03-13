@@ -156,26 +156,38 @@ def get_design_worklib_path(extended_target):
 def pre_instrumentation_worker(design_name):
     design_milesan_path = get_design_milesan_path(design_name)
     cmdline = ["make", "-C", design_milesan_path, "before_instrumentation"]
-    subprocess.check_call(cmdline)
+    try:
+        subprocess.check_call(cmdline)
+    except subprocess.CalledProcessError as e:
+        print(e)
 
 # Second-stage worker, called once per (design, instrumentation_type) pair.
 # @param instrumentation_method: "vanilla"
 def instrumentation_worker(design_name, instrumentation_method):
     design_milesan_path = get_design_milesan_path(design_name)
     cmdline = ["make", "-C", design_milesan_path, "generated/out/{}.sv".format(instrumentation_method)]
-    subprocess.check_call(cmdline)
+    try:
+        subprocess.check_call(cmdline)
+    except subprocess.CalledProcessError as e:
+        print(e)
 
 # Last-stage worker, called for each (design, extended_target) pair.
 # @param extended_target a stringified pair (instrumentation_method, trace_type). For instance vanilla_trace 
 def synthesis_worker_verilator(design_name, extended_target):
     design_milesan_path = get_design_milesan_path(design_name)
     cmdline = ["make", "-C", design_milesan_path, get_design_hsb_path(design_name, extended_target)]
-    subprocess.check_call(cmdline)
+    try:
+        subprocess.check_call(cmdline)
+    except subprocess.CalledProcessError as e:
+        print(e)
 # @param extended_target a stringified pair (instrumentation_method, trace_type). For instance vanilla_trace 
 def synthesis_worker_modelsim(design_name, extended_target):
     design_milesan_path = get_design_milesan_path(design_name)
     cmdline = ["make", "-C", design_milesan_path, f"build_{extended_target}_modelsim"]
-    subprocess.check_call(cmdline)
+    try:
+        subprocess.check_call(cmdline)
+    except subprocess.CalledProcessError as e:
+        print(e)
 
 
 #####
