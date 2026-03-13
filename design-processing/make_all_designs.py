@@ -82,7 +82,7 @@ for design_to_exclude in set(exclude_designs):
 
 # Generate the pairs (design_name, instrumentation method <as a string>).
 # These pairs are to be used in a later stage of the multiprocessing pool.
-instrumentation_methods = ["vanilla_mem", "vanilla_nomem", "rfuzz", "rfuzz_mem", "drfuzz", "drfuzz_mem"] # no drfuzz for now
+instrumentation_methods = ["vanilla", "drfuzz_mem"]
 
 design_instrumentation_pairs = []
 for design_name in design_names:
