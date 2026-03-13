@@ -17,21 +17,18 @@ echo "milesan metarepo root: $myroot"
 # Set meta repo root
 export MILESAN_META_ROOT=$myroot
 
-PWD=$(pwd)
-if [[ "${PWD}" == *"tkovats"* ]];
-then
-echo "Running natively."
-export LOCAL_MNT=/scratch/tkovats/ssh_mnt
-export PATH=$PATH:/usr/local/questa-2023-04/questasim/bin
-export VSIM=/usr/local/questa-2023-04/questasim/linux_x86_64/vsim
-export DISPLAY=localhost:10.0
-else
+if [ -f /.dockerenv ]; then
 echo "Running inside container."
 export LOCAL_MNT=/mnt
-export LM_LICENSE_FILE=8161@lic-mentor.ethz.ch
+export LM_LICENSE_FILE= #set this to your license server
 export PATH=$PATH:/usr/local/questasim/bin
 export VSIM=/usr/local/questasim/linux_x86_64/vsim
-export PATH_FROM_MODELSIM_TO_MNT=/scratch/tkovats/ssh_mnt
+export DISPLAY=localhost:10.0
+else
+echo "Running natively."
+export LOCAL_MNT=~/mnt
+export PATH=$PATH:/usr/local/questa-2023-04/questasim/bin # fix these according to your system
+export VSIM=/usr/local/questa-2023-04/questasim/linux_x86_64/vsim
 export DISPLAY=localhost:10.0
 fi
 
