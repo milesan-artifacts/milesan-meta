@@ -1,10 +1,7 @@
 # MileSan
 This repository contains the main components of MileSan and RandOS. It works in conjunction with the milesan-design repositories [milesan-kronos](https://github.com/milesan-artifacts/milesan-kronos), [milesan-chipyard](https://github.com/milesan-artifacts/milesan-chipyard), [milesan-cva6](https://github.com/milesan-artifacts/milesan-cva6) and [milesan-openc910](https://github.com/milesan-artifacts/milesan-openc910), which contain the sources required for RTL simulation. We recommend using the [docker image](https://github.com/comsec-group/milesan-docker).
 ## Docker Setup
-When using the [MileSan docker image](https://github.com/comsec-group/milesan-docker), start it with
-```
-./start.sh
-```
+We recommend using the [MileSan docker image](https://github.com/comsec-group/milesan-docker) or otherwise replicate the environment following the Dockerfile.
 ## Basic Usage
 To setup the environment variables run
 ```
