@@ -10,16 +10,30 @@ To setup the environment variables run
 ```
 source env.sh
 ```
-
+To use questasim/modelsim, set the following environment variables accordingly:
+```
+# if you are using the Docker image
+export LM_LICENSE_FILE= #set this to your license server
+# otherwise
+export LM_LICENSE_FILE= #set this to your license server
+export PATH=$PATH:/usr/local/questa-2023-04/questasim/bin # fix according to your system
+export VSIM=/usr/local/questa-2023-04/questasim/linux_x86_64/vsim # fix according to your system
+```
 ### Compiling the DUTs
 You can compile the designs ([milesan-kronos](https://github.com/milesan-artifacts/milesan-kronos), [milesan-chipyard](https://github.com/milesan-artifacts/milesan-chipyard), [milesan-cva6]() and [milesan-openc910](https://github.com/milesan-artifacts/milesan-openc910)) individually in their respective *milesan/* directories by running
 ```
 make run_vanilla_notrace && make run_drfuzz_mem_notrace
 ```
-When using ModelSim, additionally navigate to the mounted design directory on the host system and run
+for Verilator, or alternatively
 ```
-make run_drfuzz_mem_notrace_modelsim
+make build_vanilla_notrace_modelsim && make build_drfuzz_mem_notrace_modelsim
 ```
+when using questasim/modelsim.
+You can also compile all at once, by running
+```
+python make_all_designs.py --verilator --modelsim [--no-trace]
+```
+in */milesan-meta/design-processing*.
 
 ### Fuzzing
 First, cd into the *fuzzer/* directory
