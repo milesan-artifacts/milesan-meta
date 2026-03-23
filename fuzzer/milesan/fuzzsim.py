@@ -5,7 +5,7 @@
 # This script is responsible for running the RTL simulations from the fuzzer.
 
 from params.fuzzparams import MAX_NUM_PICKABLE_REGS, MAX_NUM_PICKABLE_FLOATING_REGS,USE_VANILLA, MAX_CYCLES_PER_INSTR, SETUP_CYCLES, STOP_AT_PC_TAINT,TAINT_EN
-from params.runparams import DO_ASSERT, PATH_TO_TMP, NO_REMOVE_TMPFILES, NO_REMOVE_TMPDIRS, TRACE_FST, TRACE_EN, CHECK_MEM, PATH_TO_MNT, MODELSIM_REQ_DIR, PATH_FROM_MODELSIM_TO_MNT, INSERT_REGDUMPS, USE_MODELSIM, COV_EN
+from params.runparams import DO_ASSERT, PATH_TO_TMP, NO_REMOVE_TMPFILES, NO_REMOVE_TMPDIRS, TRACE_FST, TRACE_EN, CHECK_MEM, PATH_TO_MNT, MODELSIM_REQ_DIR, INSERT_REGDUMPS, USE_MODELSIM, COV_EN
 from milesan.util import IntRegIndivState, SimulatorEnum
 from common.sim.modelsim import get_next_worker_id
 from common.sim.commonsim import setup_sim_env
@@ -330,94 +330,3 @@ def run_rtl_and_load_regstream(fuzzerstate):
 
     
 
-# Use this when fuzzing with modelsim as we can't start it from the container. Need second script to run natively in parallel and a shared mount.
-def wait_and_load_regstream(fuzzerstate, use_vanilla: bool = False):
-    req_dict = {key: value.replace(PATH_TO_MNT, PATH_FROM_MODELSIM_TO_MNT) if isinstance(value,str) else value for key,value in fuzzerstate.env.items()}
-    req_dict["USE_VANILLA"] = use_vanilla
-    req_dict["TRACE_EN"] = TRACE_EN
-    req_dict["COV_EN"] = COV_EN
-    req_dict["TRACE_FST"] = TRACE_FST
-    req_dict["EN_IFT"] = TAINT_EN
-    rtl_name = fuzzerstate.env['SIMSRAMELF'].split('/')[-1].split(".")[0]
-    timestring=strftime("%a_%d_%b_%Y_%H:%M:%S", gmtime())
-    req_path = f"{MODELSIM_REQ_DIR}/{rtl_name}.{timestring}.modelsim_req.json"
-    
-
-    assert "REGDUMP_PATH" in fuzzerstate.env
-    regdump_path = fuzzerstate.env["REGDUMP_PATH"]
-
-    assert "PCDUMP_PATH" in fuzzerstate.env
-    pcdump_path = fuzzerstate.env["PCDUMP_PATH"]
-
-
-    # If there's an old register dump from a previous run, delete it. 
-    # Otherwise we get aliasing with other simuations, especially Verilator.
-    if os.path.exists(regdump_path):
-        os.remove(regdump_path)
-
-    if INSERT_REGDUMPS:
-        assert "REGSTREAM_PATH" in fuzzerstate.env
-        regstream_path = fuzzerstate.env["REGSTREAM_PATH"]
-        if os.path.exists(regstream_path):
-            os.remove(regstream_path)
-
-    with open(req_path, "w") as f:
-        json.dump(req_dict, f)
-
-    os.chmod(MODELSIM_REQ_DIR, 0o777)
-    os.chmod(req_path, 0o777)
-    os.chmod(fuzzerstate.tmp_dir, 0o777)
-
-    if PRINT_THREAD_STATUS:
-        print(f"Dumped request to {req_path}")
-    start = time.time()
-    while(1):
-        time.sleep(2)
-        if PRINT_THREAD_STATUS:
-            print(f"Waiting for modelsim results at {regdump_path}...")
-        if(os.path.exists(regdump_path)):
-           break
-        if STOP_AT_PC_TAINT:
-            if(os.path.exists(pcdump_path)):
-               break
-    
-    if PRINT_THREAD_STATUS:
-        print(f"Modelsim results are ready. Loading...")
-
-    while(1):
-        try:
-            if STOP_AT_PC_TAINT:
-                with open(pcdump_path, "r") as f:
-                    pcdump = int(f.read(),16)
-                    if pcdump:
-                        return (None, None), (None, None), None, pcdump
-                    
-            with open(regdump_path, "rb") as f:
-                regdumps_rtl = json.load(f)
-                if PRINT_THREAD_STATUS:
-                    print(f"Modelsim results loaded succesfully from {regdump_path}.")
-                break
-        except Exception as e:
-            if isinstance(e, ValueError) or isinstance(e, json.decoder.JSONDecodeError):
-                time.sleep(1)
-            else:
-                raise e
-
-    if len(regdumps_rtl) == 1 and "timeout" in regdumps_rtl[0]:
-        assert False, f"Modelsim instance timed out after {time.time-start}s. ({regdumps_rtl[0]['timeout']}s modelsim runtime)."
-    
-    regdump_rtl_val_taint = {int(r["id"][1:]): int(clean_xX(r["value_t0"]),16) for r in regdumps_rtl}
-    regdump_rtl_val = {int(r["id"][1:]): int(r["value"],16) for r in regdumps_rtl}
-
-    regstream_rtl_val_taint = {}
-    regstream_rtl_val = {}
-    if INSERT_REGDUMPS:
-        assert not USE_VANILLA
-        assert os.path.exists(regstream_path), f"{regstream_path} does not exist"
-        with open(regstream_path, "rb") as f:
-            regstream_rtl = json.load(f)
-        regstream_rtl_val_taint = {int(r["id"],16): int(clean_xX(r["value_t0"]),16) for r in regstream_rtl}
-        regstream_rtl_val = {int(r["id"],16): int(r["value"],16) for r in regstream_rtl}
-
-    sramdump_rtl = {} # For compatibility with kronos. Not used for other cores.
-    return (regstream_rtl_val, regstream_rtl_val_taint), (regdump_rtl_val, regdump_rtl_val_taint), sramdump_rtl, pcdump if STOP_AT_PC_TAINT else None

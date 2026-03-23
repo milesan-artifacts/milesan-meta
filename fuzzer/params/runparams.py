@@ -11,7 +11,6 @@ PATH_TO_TMP_ENV_VAR = "MILESAN_DATADIR"
 PATH_TO_TMP = os.path.join(os.environ[PATH_TO_TMP_ENV_VAR])
 os.makedirs(PATH_TO_TMP, exist_ok=True)
 PATH_TO_MNT = os.path.join(os.environ['LOCAL_MNT'])
-PATH_FROM_MODELSIM_TO_MNT =  os.path.join(os.environ['PATH_FROM_MODELSIM_TO_MNT'])
 PATH_TO_MNT_ENV_VAR = "LOCAL_MNT"
 MODELSIM_REQ_DIR = os.path.join(PATH_TO_MNT, "modelsim_req")
 os.makedirs(MODELSIM_REQ_DIR, exist_ok=True)
