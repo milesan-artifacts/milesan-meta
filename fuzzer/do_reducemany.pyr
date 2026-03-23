@@ -39,7 +39,7 @@ def _parse_logfile(path, design_name):
 
 if __name__ == '__main__':
     if "MILESAN_ENV_SOURCED" not in os.environ:
-        raise Exception("The MileSan environment must be sourced prior to running the Python recipes.")
+        raise Exception("The Cascade environment must be sourced prior to running the Python recipes.")
 
     if len(sys.argv) < 4:
         raise Exception("Usage: python3 do_reducemany.py <design_name> <num_cores> [--seeds=seed0,seed1,seed2,...,seedN] [--log-file=path_to_log-file] [--max-seed=seedN]")

@@ -66,7 +66,7 @@ export MODELSIM_WORKROOT=$HOME/modelsim_workroot
 export MODELSIM_VSIM_COVERPATH=cover.ucdb
 
 export MILESAN_DATADIR=$LOCAL_MNT/milesan-data
-
+mkdir -p $MILESAN_DATADIR
 # Where should our python venv be?
 export MILESAN_PYTHON_VENV=$PREFIX_MILESAN/python-venv
 
