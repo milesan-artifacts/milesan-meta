@@ -1,0 +1,41 @@
+[
+    {
+        "NAME": "REDUCE/REDUCE_PERF_SWEEP_10",
+        "USE_MODELSIM": "1",
+        "USE_MMU": "0",
+        "DUTS":["rocket","cva6","boom","openc910"],
+        "TIMEOUT":"7200",
+        "N_THREADS":"50",
+        "N_TESTS":"-1",
+        "NUM_BBS":"10",
+        "FIND_PILLAR_INSTRUCTION":"1",
+        "FIND_PILLARS":"1",
+        "NOPIZE_SANDWICH_INSTRUCTIONS":"1"
+    },
+    {
+        "NAME": "REDUCE/REDUCE_PERF_SWEEP_100",
+        "USE_MODELSIM": "1",
+        "USE_MMU": "0",
+        "DUTS":["rocket","cva6","boom","openc910"],
+        "TIMEOUT":"7200",
+        "N_THREADS":"50",
+        "N_TESTS":"-1",
+        "NUM_BBS":"100",
+        "FIND_PILLAR_INSTRUCTION":"1",
+        "FIND_PILLARS":"1",
+        "NOPIZE_SANDWICH_INSTRUCTIONS":"1"
+    },
+    {
+        "NAME": "REDUCE/REDUCE_PERF_SWEEP_1000",
+        "USE_MODELSIM": "1",
+        "USE_MMU": "0",
+        "DUTS":["rocket","cva6","boom","openc910"],
+        "TIMEOUT":"7200",
+        "N_THREADS":"50",
+        "N_TESTS":"-1",
+        "NUM_BBS":"1000",
+        "FIND_PILLAR_INSTRUCTION":"1",
+        "FIND_PILLARS":"1",
+        "NOPIZE_SANDWICH_INSTRUCTIONS":"1"
+    }
+]

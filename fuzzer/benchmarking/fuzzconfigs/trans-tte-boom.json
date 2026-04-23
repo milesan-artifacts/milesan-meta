@@ -1,0 +1,57 @@
+[
+    {
+        "NAME": "TRANS-TTE/U_to_S",
+        "TAINT_SOURCE_PRIVS":"U",
+        "TAINT_SINK_PRIVS":"S",
+        "USE_MODELSIM": "1",
+        "USE_MMU": "1",
+        "DUTS":["boom","pt-boom"],
+        "TIMEOUT":"7200",
+        "N_THREADS":"50",
+        "N_TESTS":"-1"
+    },
+    {
+        "NAME": "TRANS-TTE/U_to_M",
+        "TAINT_SOURCE_PRIVS":"U",
+        "TAINT_SINK_PRIVS":"M",
+        "USE_MODELSIM": "1",
+        "USE_MMU": "1",
+        "DUTS":["boom","pt-boom"],
+        "TIMEOUT":"7200",
+        "N_THREADS":"50",
+        "N_TESTS":"-1"
+    },
+    {
+        "NAME": "TRANS-TTE/M_to_U",
+        "TAINT_SOURCE_PRIVS":"M",
+        "TAINT_SINK_PRIVS":"U",
+        "USE_MODELSIM": "1",
+        "USE_MMU": "1",
+        "DUTS":["boom","pt-boom"],
+        "TIMEOUT":"7200",
+        "N_THREADS":"50",
+        "N_TESTS":"-1"
+    },
+    {
+        "NAME": "TRANS-TTE/M_to_S",
+        "TAINT_SOURCE_PRIVS":"M",
+        "TAINT_SINK_PRIVS":"S",
+        "USE_MODELSIM": "1",
+        "USE_MMU": "1",
+        "DUTS":["boom","pt-boom"],
+        "TIMEOUT":"7200",
+        "N_THREADS":"50",
+        "N_TESTS":"-1"
+    },
+    {
+        "NAME": "TRANS-TTE/S_to_U",
+        "TAINT_SOURCE_PRIVS":"S",
+        "TAINT_SINK_PRIVS":"U",
+        "USE_MODELSIM": "1",
+        "USE_MMU": "1",
+        "DUTS":["boom","pt-boom"],
+        "TIMEOUT":"7200",
+        "N_THREADS":"50",
+        "N_TESTS":"-1"
+    }
+]

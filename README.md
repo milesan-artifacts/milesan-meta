@@ -72,11 +72,11 @@ To perform benchmarking, cd into the */mnt/milesan-meta/fuzzer/benchmarking* dir
 The *fuzz_and_reduce.py* script allows fuzzing a set of DUTs with various configurations and subsequently reducing the leaking programs while collecting performance stats etc.
 To perform benchmarking of the transient vulnerabilities discovered on BOOM, run
 ```
-python fuzz_and_reduce.py fuzzconfigs/trans-plots-boom.json
+python fuzz_and_reduce.py fuzzconfigs/trans-tte-boom.json
 ```
 which will fuzz and reduce. However, you can skipp fuzzing or reducing by providing the *--fuzz-only* or *--reduce-only* flags. E.g.,
 ```
-python fuzz_and_reduce.py fuzzconfigs/trans-plots-boom.json --reduce-only
+python fuzz_and_reduce.py fuzzconfigs/trans-tte-boom.json --reduce-only
 ```
 will only perform reduction and raise an error if no fuzzing with the respective configurtation was performed beforehand. You can pass parameters for fuzzing or reduction through environment variables as above.
 

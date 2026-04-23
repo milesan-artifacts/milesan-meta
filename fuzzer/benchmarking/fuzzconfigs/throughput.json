@@ -1,0 +1,50 @@
+[
+    {
+        "NAME": "PERF/FUZZ_PERF_SWEEP_1",
+        "USE_MODELSIM": "1",
+        "USE_MMU": "0",
+        "DUTS":["kronos","rocket","cva6","boom","openc910"],
+        "TIMEOUT":"7200",
+        "N_THREADS":"50",
+        "N_TESTS":"100",
+        "COLLECT_PERF_STATS":"1",
+        "NO_REMOVE_TMPFILES":"1",
+        "NUM_BBS":"1"
+    },
+    {
+        "NAME": "PERF/FUZZ_PERF_SWEEP_10",
+        "USE_MODELSIM": "1",
+        "USE_MMU": "0",
+        "DUTS":["kronos","rocket","cva6","boom","openc910"],
+        "TIMEOUT":"7200",
+        "N_THREADS":"50",
+        "N_TESTS":"100",
+        "COLLECT_PERF_STATS":"1",
+        "NO_REMOVE_TMPFILES":"1",
+        "NUM_BBS":"10"
+    },
+    {
+        "NAME": "PERF/FUZZ_PERF_SWEEP_100",
+        "USE_MODELSIM": "1",
+        "USE_MMU": "0",
+        "DUTS":["kronos","rocket","cva6","boom","openc910"],
+        "TIMEOUT":"7200",
+        "N_THREADS":"50",
+        "N_TESTS":"100",
+        "COLLECT_PERF_STATS":"1",
+        "NO_REMOVE_TMPFILES":"1",
+        "NUM_BBS":"100"
+    },
+    {
+        "NAME": "PERF/FUZZ_PERF_SWEEP_1000",
+        "USE_MODELSIM": "1",
+        "USE_MMU": "0",
+        "DUTS":["kronos","rocket","cva6","boom","openc910"],
+        "TIMEOUT":"7200",
+        "N_THREADS":"50",
+        "N_TESTS":"100",
+        "COLLECT_PERF_STATS":"1",
+        "NO_REMOVE_TMPFILES":"1",
+        "NUM_BBS":"1000"
+    }
+]
