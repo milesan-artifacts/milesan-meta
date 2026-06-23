@@ -109,3 +109,15 @@ to plot the data. Note that the obtained data and plots might deviate from the o
 
 ## Testing PoCs
 To test PoCs from this and prior work, look at the README in the *pocs/* directory for further instructions.
+
+## Citation
+If you use MileSan for your own research, please cite our paper:
+```
+@inproceedings{kovats2025milesan,
+  title={Milesan: Detecting exploitable microarchitectural leakage via differential hardware-software taint tracking},
+  author={Kovats, Tobias and Solt, Flavien and Ceesay-Seitz, Katharina and Razavi, Kaveh},
+  booktitle={Proceedings of the 2025 ACM SIGSAC Conference on Computer and Communications Security},
+  pages={2579--2593},
+  year={2025}
+}
+```
